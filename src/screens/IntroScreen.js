@@ -1,7 +1,7 @@
 // import React in our code
 import React, { useState } from 'react';
-
-import img from "./../../../assets/img1.png";
+import { useNavigation } from "@react-navigation/native";
+import img from "./../../assets/img1.png";
 
 // import all the components we are going to use
 import {
@@ -17,11 +17,12 @@ import {
 import AppIntroSlider from 'react-native-app-intro-slider';
 
 const IntroScreen = () => {
-  // const [showRealApp, setShowRealApp] = useState(false);
+  const [showRealApp, setShowRealApp] = useState(false);
+  const navigation = useNavigation();
 
-  // const onDone = () => {
-  //   setShowRealApp(true);
-  // };
+  const onDone = () => {
+    navigation.navigate('Login')
+  };
 
   // const onSkip = () => {
   //   setShowRealApp(true);
@@ -48,7 +49,7 @@ const IntroScreen = () => {
       <AppIntroSlider
         data={slides}
         renderItem={RenderItem}
-        // onDone={onDone}
+        onDone={onDone}
         showSkipButton={false}
         showNextButton={true}
         dotStyle={{ backgroundColor: 'rgba(0, 0, 0, .2)' }}

@@ -1,13 +1,13 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import IntroScreen from './src/components/screens/IntroScreen'
+import Navigation from './src/screens/Navigation';
+
 
 const App = () => {
   return (
     <>
-    <IntroScreen />
+    <Navigation />
     </>
-  )
-}
-
+  );
+  }
 export default App
