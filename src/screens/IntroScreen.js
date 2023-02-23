@@ -1,32 +1,25 @@
-// import React in our code
-import React, { useState } from 'react';
-import { useNavigation } from "@react-navigation/native";
-import img from "./../../assets/img1.png";
+import React from 'react';
 
-// import all the components we are going to use
 import {
-  SafeAreaView,
   StyleSheet,
   View,
   Text,
   Image,
-  Button,
 } from 'react-native';
 
-//import AppIntroSlider to use it
-import AppIntroSlider from 'react-native-app-intro-slider';
+import { useNavigation } from "@react-navigation/native";
+import AppIntroSlider from 'react-native-app-intro-slider'
+
+import IntroImage from "./../../assets/img1.png";
+
+
 
 const IntroScreen = () => {
-  const [showRealApp, setShowRealApp] = useState(false);
   const navigation = useNavigation();
 
   const onDone = () => {
     navigation.navigate('Login')
   };
-
-  // const onSkip = () => {
-  //   setShowRealApp(true);
-  // };
 
   const RenderItem = ({ item }) => {
     return (
@@ -37,7 +30,6 @@ const IntroScreen = () => {
           justifyContent: 'space-around',
           paddingBottom: 100,
         }}>
-        {/* <Text style={styles.introTitleStyle}>{item.title}</Text> */}
         <Image style={styles.introImageStyle} source={item.image} />
         <Text style={styles.introTextStyle}>{item.text}</Text>
       </View>
@@ -54,8 +46,6 @@ const IntroScreen = () => {
         showNextButton={true}
         dotStyle={{ backgroundColor: 'rgba(0, 0, 0, .2)' }}
         activeDotStyle={{ backgroundColor: '#057DCD' }}
-
-      // onSkip={onSkip}
       />
     </>
   );
@@ -88,13 +78,11 @@ const styles = StyleSheet.create({
   },
   introTextStyle: {
     fontSize: 18,
-    // color: 'white',
     textAlign: 'center',
     paddingVertical: 30,
   },
   introTitleStyle: {
     fontSize: 25,
-    // color: 'white',
     textAlign: 'center',
     marginBottom: 16,
     fontWeight: 'bold',
@@ -106,14 +94,14 @@ const slides = [
     key: 's1',
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non condimentum eros. Nunc et lacus nec nisi faucibus ornare. Maecenas ultricies aliquet mi a accumsan. Donec dapibus,',
     title: 'Mobile Recharge',
-    image: img,
+    image: IntroImage,
     backgroundColor: '#20d2bb',
   },
   {
     key: 's2',
     title: 'Flight Booking',
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non condimentum eros. Nunc et lacus nec nisi faucibus ornare. Maecenas ultricies aliquet mi a accumsan. Donec dapibus,',
-    image: img,
+    image: IntroImage,
     backgroundColor: '#febe29',
   },
 ];

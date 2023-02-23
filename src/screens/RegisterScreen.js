@@ -1,43 +1,48 @@
+import React, { useState, useContext } from 'react';
 import { View, Text, StyleSheet, TextInput } from 'react-native';
-import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 
+import { Context } from '../context/Provider';
+
 const RegisterScreen = () => {
+
     const navigation = useNavigation();
+
+    const [ email, setEmail ] = useState(null);
+    const [ password, setPass ] = useState(null);
+    const [ repeated_password, setConfirmPass ] = useState(null);
+
+    const {register} = useContext(Context)
 
     return (
         <View style={styles.container} >
+
             <Text style={styles.title}>Register</Text>
 
-
             <View style={styles.inputDad}>
                 {/* <Icon name="mail" color="#00716F" size={24}/> */}
-                <TextInput style={styles.input} placeholder='Enter username' />
-            </View>
-
-            <View style={styles.inputDad}>
-                {/* <Icon name="mail" color="#00716F" size={24}/> */}
-                <TextInput style={styles.input} placeholder='Enter password' />
+                <TextInput style={styles.input} placeholder='Enter email' onChangeText={(text) => setEmail(text)} />
             </View>
 
             <View style={styles.inputDad}>
                 {/* <Icon name="mail" color="#00716F" size={24}/> */}
-                <TextInput style={styles.input} placeholder='Confirm the password' />
+                <TextInput style={styles.input} placeholder='Enter password' onChangeText={(text) => setPass(text)} />
             </View>
 
-            <View style={styles.btnDad}>
-                <Text style={styles.btn}>Login</Text>
+            <View style={styles.inputDad}>
+                {/* <Icon name="mail" color="#00716F" size={24}/> */}
+                <TextInput style={styles.input} placeholder='Confirm the password' onChangeText={(text) => setConfirmPass(text)} />
             </View>
 
-            <View style={{
-                alignSelf: "center",
-                paddingVertical: 30
-            }}>
+            <View style={styles.btnDad} >
+                <Text style={styles.btn} onPress={() => register(email, password, repeated_password)}>Register</Text>
+            </View>
+
+            <View style={{ alignSelf: "center", paddingVertical: 30 }}>
                 <Text>are you logged?</Text>
-                <Text
-                    onPress={()=> navigation.navigate('Login')}
-                    style={styles.registerPage}>Login here</Text>
+                <Text onPress={()=> navigation.navigate('Login')} style={styles.registerPage}>Login here</Text>
             </View>
+
         </View>
     )
 }
@@ -83,7 +88,6 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         color: "#43B0F1",
         fontFamily: "SemiBold",
-        // paddingVertical: 30
     },
 })
 

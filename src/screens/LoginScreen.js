@@ -1,37 +1,39 @@
-import { View, Text, StyleSheet, Image, TextInput } from 'react-native';
-import React from 'react';
+import React, { useState, useContext } from 'react';
+import { View, Text, StyleSheet, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { Context } from '../context/Provider';
 
 const LoginScreen = () => {
+    
     const navigation = useNavigation();
+
+    const [email, setEmail] = useState(null);
+    const [password, setPass] = useState(null);
+
+    const {login} = useContext(Context)
+
 
     return (
         <View style={styles.container} >
             <Text style={styles.title}>Login</Text>
 
-
             <View style={styles.inputDad}>
                 {/* <Icon name="mail" color="#00716F" size={24}/> */}
-                <TextInput style={styles.input} placeholder='Enter email' />
+                <TextInput style={styles.input} placeholder='Enter email' onChangeText={(text) => setEmail(text)} />
             </View>
 
             <View style={styles.inputDad}>
                 {/* <Icon name="mail" color="#00716F" size={24}/> */}
-                <TextInput style={styles.input} placeholder='Enter password' />
+                <TextInput style={styles.input} placeholder='Enter password' onChangeText={(text) => setPass(text)} />
             </View>
 
             <View style={styles.btnDad}>
-                <Text style={styles.btn}>Login</Text>
+                <Text style={styles.btn} onPress={() => login(email, password)}>Login</Text>
             </View>
 
-            <View style={{
-                alignSelf: "center",
-                paddingVertical: 30
-            }}>
+            <View style={{ alignSelf: "center", paddingVertical: 30 }}>
                 <Text>are you registered?</Text>
-                <Text
-                    onPress={()=> navigation.navigate('Register')}
-                    style={styles.registerPage}>register here</Text>
+                <Text onPress={() => navigation.navigate('Register')} style={styles.registerPage}>register here</Text>
             </View>
         </View>
     )
@@ -78,7 +80,6 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         color: "#43B0F1",
         fontFamily: "SemiBold",
-        // paddingVertical: 30
     },
 })
 
